@@ -1,13 +1,11 @@
 from django.contrib import admin
 from django.contrib.gis.admin import OSMGeoAdmin
-from .models import Diss
+from .models import Location
 
 
-@admin.register(Diss)
-class ShopAdmin(OSMGeoAdmin):
+@admin.register(Location)
+class SwimAdmin(OSMGeoAdmin):
     list_display = ('name', 'location')
 
 
 
-
-# Register your models here.
