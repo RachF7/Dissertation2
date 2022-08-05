@@ -1,5 +1,7 @@
 from django import forms
-from diss.models import UserProfile
+from django.forms import ModelForm
+
+from diss.models import UserProfile, forum, Discussion
 
 from django.contrib.auth.models import User
 
@@ -17,3 +19,15 @@ class UserProfileForm(forms.ModelForm):
     class Meta:
         model = UserProfile
         fields = ('website', 'picture',)
+
+
+class CreateInForum(ModelForm):
+    class Meta:
+        model = forum
+        fields = "__all__"
+
+
+class CreateInDiscussion(ModelForm):
+    class Meta:
+        model = Discussion
+        fields = "__all__"

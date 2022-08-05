@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.contrib.gis.admin import OSMGeoAdmin
-from .models import Location
+from .models import Location, forum, Discussion
 from diss.models import UserProfile
 
 
@@ -10,6 +10,9 @@ class SwimAdmin(OSMGeoAdmin):
     
 
 admin.site.register(UserProfile)
+
+admin.site.register(forum)
+admin.site.register(Discussion)
 
 
 

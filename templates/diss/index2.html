@@ -89,11 +89,13 @@
                         <li><a href="#portfolio">Locations</a></li>
                         <li><a href="#testimonials">Community</a></li>
                         <li><a href="#contact">Contact</a></li>
+						<li><a href="/diss/chat/">chat</a></li>
 						{% if user.is_authenticated %}
 						<li><a href="events/">Events</a></li>
-						 <li><a href="logout/">Log Out</a></li>
+						 <li><a href="/diss/logout/">Log Out</a></li>
 						{% else %}
 						<li><a href="/diss/login/">login</a></li>
+
 						{% endif %}
                     </ul>
                 </nav>

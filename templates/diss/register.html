@@ -1,17 +1,23 @@
 
 {% load staticfiles %}
 
-{% block title_block %}
-    Register
-{% endblock %}
+{% include 'diss/base.html' %}
+	 <link rel="stylesheet" href="{% static 'css/login.css' %}">
 
 {% block body_block %}
-<h1>Register for Rango</h1>
+
+<section id="login" class="parallax">
+				<div class="overlay">
+					<div class="container">
+						<div class="row">
+							<div class="sec-title text-center white wow animated fadeInDown">
+								<h2> Join Us!</h2>
+							</div>
 {% if registered %}
 Rango says: <strong>thank you for registering!</strong>
 <a href="{% url 'diss:index' %}">Return to the homepage.</a><br />
 {% else %}
-Rango says: <strong>register here!</strong><br />
+<strong>register here!</strong><br />
 <form id="user_form" method="post" action="{% url 'diss:register' %}" enctype="multipart/form-data">
     {% csrf_token %}
     {{ user_form.as_p }}

@@ -9,6 +9,8 @@ urlpatterns = [
     path('restricted/', views.restricted, name='restricted'),
     path('logout/', views.user_logout, name='logout'),
     path('events/', views.events, name='events'),
+    path('chat/', views.chat, name='chat'),
+    path('addInForum/', views.addInForum, name='addInForum'),
+    path('addInDiscussion/', views.addInDiscussion, name='addInDiscussion'),
 
 ]
-

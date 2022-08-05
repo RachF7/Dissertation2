@@ -1,0 +1,27 @@
+
+
+#login {
+    background-image: url(../img/parallax/swim2.jpeg);
+    padding: 0;
+    color: #fff;
+}
+
+#login .sec-title h2 {
+     border-bottom: 1px solid #009ee3;
+    content: "";
+    position: centre;
+    margin-top: 100px;
+}
+
+#login .overlay {
+    background-color: rgba(46,184,184, 0.78);
+    padding: 70px 0 40px;
+    height:100%
+}
+button {
+    background-color: rgba(0,158,227, 0.78);
+    box-shadow: 0 -2px 0 rgba(0, 0, 0, 0.15) inset;
+    padding: 15px 55px;
+    color: #fff;
+    position: centre;
+}
