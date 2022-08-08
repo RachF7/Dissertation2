@@ -1,17 +1,67 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Markers Map</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" type="text/css" href="{% static 'map.css' %}" />
-    <link rel="stylesheet" type="text/css" href="https:///unpkg.com/leaflet/dist/leaflet.css" />
-    <script src="https:///unpkg.com/leaflet/dist/leaflet.js"></script>
-  </head>
-  <body>
-  {{ markers|json_script:"markers-data" }}
-    <div id="map"></div>
-    <script src="{% static 'map.js' %}"></script>
-  </body>
-   <a href="/diss/">Index</a><br />
-</html>
+{% include 'diss/base.html' %}
+{% block content %}
+   <style>
+       #map {
+           height: 500px;
+           width: 100%;
+       }
+
+       .mapboxgl-marker {
+           cursor: pointer;
+       }
+
+       .locator-popup {
+           font-size: 14px;
+       }
+   </style>
+   <h1 style="margin-top: 100px">Swimming Locations </h1>
+   <h5>Click a location to see spot details</h5>
+   <div id='map' class='map'></div>
+
+   <!-- load TomTom Maps Web SDK from CDN -->
+   <link rel='stylesheet' type='text/css' href='https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.13.0/maps/maps.css'/>
+   <script src='https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.13.0/maps/maps-web.min.js'></script>
+
+   <script>
+       // create the map
+        tt.setProductInfo('TomTom Maps Django Demo', '1.0');
+       let map = tt.map({
+           key: 'BnRyuiviMJTtLHbxgWr1fH9boMsdisbv',
+           container: 'map'
+       });
+
+       // add store markers
+       let bounds = []
+       let storeLocations = JSON.parse("{{ locations|escapejs }}");
+
+       for (let storeLocation of storeLocations) {
+           let coordinates = [storeLocation.longitude, storeLocation.latitude];
+            bounds.push(coordinates);
+
+           // create popup to display store information when the marker is clicked
+           let popup = new tt.Popup().setHTML(`
+               <div class="locator-popup">
+                   <h6>Spot Name</h6>
+                   <p>${storeLocation.name}</p>
+                   <h6>Address</h6>
+                   <p>${storeLocation.address}</p>
+                   <h6>More Info</h6>
+                   <p>${storeLocation.name}</p>
+               </div>
+           `);
+
+           let marker = new tt.Marker()
+               .setLngLat(coordinates)
+               .setPopup(popup)
+               .addTo(map);
+       }
+
+       // zoom the map to fit all markers
+        map.on('load', () => {
+            map.fitBounds(bounds, {
+               padding: { top: 50, bottom:50, left: 50, right: 50 }
+           });
+       })
+   </script>
+
+{% endblock %}

@@ -25,8 +25,16 @@ def index(request):
     return render(request, 'diss/index2.html', context=context_dict)
 
 
+
+
+from .models import Location
+
+
 def map(request):
-    return render(request, 'diss/map.html', )
+    location_list = list(Location.objects.order_by('name').values())
+    location_json = json.dumps(location_list)
+    context = {'locations': location_json}
+    return render(request, 'diss/map.html', context)
 
 
 def events(request):

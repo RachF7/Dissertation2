@@ -6,7 +6,7 @@ from diss.models import UserProfile
 
 @admin.register(Location)
 class SwimAdmin(OSMGeoAdmin):
-    list_display = ('name', 'location')
+    list_display = ('name', 'address')
     
 
 admin.site.register(UserProfile)

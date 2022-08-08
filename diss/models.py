@@ -3,10 +3,10 @@ from django.contrib.auth.models import User
 
 
 class Location(models.Model):
-    name = models.CharField(max_length=100)
-    location = models.PointField()
-    address = models.CharField(max_length=100)
-    city = models.CharField(max_length=50)
+    name = models.CharField(max_length=250)
+    address = models.TextField()
+    latitude = models.FloatField(default=0)
+    longitude = models.FloatField(default=0)
 
     def __str__(self):
         """Return string representation."""
@@ -41,4 +41,3 @@ class Discussion(models.Model):
 
     def __str__(self):
         return str(self.forum)
-
